@@ -45,14 +45,14 @@ public class PrimeSieve {
         // init the array of booleans
         boolean[] sieve = new boolean[(n + 1)];
         // at first mark all numbers as prime
-        for (int i=2; i <= n; i++) {
+        for (int i = 2; i <= n; i++) {
             sieve[i] = true;
         }
         // Then mark non primes using multiples of primes
-        for (int i=2; i*i <= n; i++) {
+        for (int i = 2; i * i <= n; i++) {
             if (sieve[i]) {
-                for (int j = i; i*j <= n; j++) {
-                    sieve[i*j] = false;
+                for (int j = i; i * j <= n; j++) {
+                    sieve[i * j] = false;
                 }
             }
         }
@@ -73,10 +73,10 @@ public class PrimeSieve {
     public static boolean isPrime(long n) {
         boolean[] sieve = PrimeSieve.instance().getSieve();
         if (n < sieve.length) {
-            return sieve[(int)n];
+            return sieve[(int) n];
         } else {
-            int root = (int)sqrt(n);
-            for (int i=5; i<=root; i+=2) {
+            int root = (int) sqrt(n);
+            for (int i = 5; i <= root; i += 2) {
                 if (sieve[i]) {
                     if (n % i == 0)
                         return false;
@@ -102,7 +102,7 @@ public class PrimeSieve {
             // On average there are about 64 prime numbers per thousand
             // so we'll err on the safe side and say 50 per 1,000
             double thousands = (n / 50.0) + 1;
-            sieve = PrimeSieve.primeSieve((int)thousands*1000);
+            sieve = PrimeSieve.primeSieve((int) thousands * 1000);
         }
         int count = 3;
         int i = 5;

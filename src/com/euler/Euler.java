@@ -16,21 +16,23 @@ public class Euler {
         long startTime = System.nanoTime();
 
         System.out.println("Hello, world!");
-        System.out.printf("Project Euler Problem 1: %d\n", euler1());
-        System.out.printf("Project Euler Problem 2: %d\n", euler2());
-        System.out.printf("Project Euler Problem 3: %d\n", euler3());
-        System.out.printf("Project Euler Problem 4: %d\n", euler4());
-        System.out.printf("Project Euler Problem 5: %d\n", euler5());
-        System.out.printf("Project Euler Problem 6: %d\n", euler6());
-        System.out.printf("Project Euler Problem 7: %d\n", euler7());
-        System.out.printf("Project Euler Problem 8: %d\n", euler8());
-        System.out.printf("Project Euler Problem 9: %d\n", euler9());
-        System.out.printf("Project Euler Problem 10: %d\n", euler10());
-        System.out.printf("Project Euler Problem 11: %d\n", euler11());
-        System.out.printf("Project Euler Problem 12: %d\n", euler12());
+        System.out.printf("Project Euler Problem 1: %s\n", euler1());
+        System.out.printf("Project Euler Problem 2: %s\n", euler2());
+        System.out.printf("Project Euler Problem 3: %s\n", euler3());
+        System.out.printf("Project Euler Problem 4: %s\n", euler4());
+        System.out.printf("Project Euler Problem 5: %s\n", euler5());
+        System.out.printf("Project Euler Problem 6: %s\n", euler6());
+        System.out.printf("Project Euler Problem 7: %s\n", euler7());
+        System.out.printf("Project Euler Problem 8: %s\n", euler8());
+        System.out.printf("Project Euler Problem 9: %s\n", euler9());
+        System.out.printf("Project Euler Problem 10: %s\n", euler10());
+        System.out.printf("Project Euler Problem 11: %s\n", euler11());
+        System.out.printf("Project Euler Problem 12: %s\n", euler12());
         System.out.printf("Project Euler Problem 13: %s\n", euler13());
         System.out.printf("Project Euler Problem 14: %s\n", euler14());
         System.out.printf("Project Euler Problem 15: %s\n", euler15());
+        System.out.printf("Project Euler Problem 16: %s\n", euler16());
+        System.out.printf("Project Euler Problem 17: %s\n", euler17());
 
         long endTime = System.nanoTime();
         double stime = (endTime - startTime) / 1000000000.0;
@@ -157,7 +159,7 @@ public class Euler {
             for (int i = 0; i < bigstring.length(); i++) {
                 // Substring is needed because I don't know how to convert bytes
                 // and this returns the value as a string of a single char
-                int next = Integer.valueOf(bigstring.substring(i, i+1));
+                int next = Integer.valueOf(bigstring.substring(i, i + 1));
                 ints[i] = next;
             }
             // Loop to find the sequence with the largest product
@@ -299,7 +301,7 @@ public class Euler {
     public static int euler14() {
         int longest = 0;
         int n = 0;
-        for (int i = 1; i < 1000000; i+=2) {
+        for (int i = 1; i < 1000000; i += 2) {
             long x = i;
             int count = 0;
             while (x > 1) {
@@ -319,7 +321,26 @@ public class Euler {
     }
 
     public static BigInteger euler15() {
-        return binomial(40,20);
+        return binomial(40, 20);
+    }
+
+    public static int euler16() {
+        BigInteger two = new BigInteger("2");
+        BigInteger n = two.pow(1000);
+        String s = n.toString();
+        int total = 0;
+        for (int i = 0; i < s.length(); i++) {
+            total += s.charAt(i) - '0';
+        }
+        return total;
+    }
+
+    public static int euler17() {
+        int total = 0;
+        for (int i = 1; i <= 1000; i++) {
+            total += writtenCharCount(i);
+        }
+        return total;
     }
 
 }

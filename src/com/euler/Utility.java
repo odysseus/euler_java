@@ -35,26 +35,26 @@ public class Utility {
     }
 
     public static int[] findTrips(int m, int n) {
-        int a = (int)(Math.pow(m, 2) - Math.pow(n, 2));
-        int b = 2*m*n;
-        int c = (int)(Math.pow(m,  2) + Math.pow(n,  2));
+        int a = (int) (Math.pow(m, 2) - Math.pow(n, 2));
+        int b = 2 * m * n;
+        int c = (int) (Math.pow(m, 2) + Math.pow(n, 2));
         return new int[]{a, b, c};
     }
 
     public static int[] pyTrips(int m, int n) {
         if (m == n) {
-            return new int[]{0,0,0};
+            return new int[]{0, 0, 0};
         } else if (m > n) {
-            return findTrips(m,n);
+            return findTrips(m, n);
         } else {
-            return findTrips(n,m);
+            return findTrips(n, m);
         }
     }
 
     public static int factors(long n) {
         int count = 2;
-        long root = (long)sqrt(n);
-        for (int i=2; i<=root; i++) {
+        long root = (long) sqrt(n);
+        for (int i = 2; i <= root; i++) {
             if (n % i == 0)
                 count += 2;
             if (Math.pow(i, 2) == n)
@@ -88,6 +88,42 @@ public class Utility {
             coeff = coeff.divide(BigInteger.valueOf(i));
         }
         return coeff;
+    }
+
+
+    public static int writtenCharCount(int i) {
+        int[] ones = {0, 3, 3, 5, 4, 4, 3, 5, 5, 4};
+        int[] tens = {0, 0, 6, 6, 5, 5, 5, 7, 6, 6};
+        int[] hundreds = {0, 10, 10, 12, 11, 11, 10, 12, 12, 11};
+        int[] thousands = {0, 11, 11, 13, 12, 12, 11, 13, 12, 12};
+        int[] teens = {3, 6, 6, 8, 8, 7, 7, 9, 8, 8};
+        int total = 0;
+        String s = Integer.toString(i);
+        if (i / 1000 > 0) {
+            total += thousands[s.charAt(0) - '0'];
+            i %= 1000;
+            s = Integer.toString(i);
+        }
+        if (i / 100 > 0) {
+            total += hundreds[s.charAt(0) - '0'];
+            if (i%100 != 0) total += 3;
+            i %= 100;
+            s = Integer.toString(i);
+        }
+        if (i / 10 > 0) {
+            if (i>9 && i<20) {
+                total += teens[i-10];
+                i %= i;
+            } else {
+                total += tens[s.charAt(0) - '0'];
+                i %= 10;
+                s = Integer.toString(i);
+            }
+        }
+        if (i / 1 > 0) {
+            total += ones[s.charAt(0) - '0'];
+        }
+        return total;
     }
 
 }
