@@ -8,6 +8,7 @@ import java.math.BigInteger;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Euler {
@@ -33,6 +34,7 @@ public class Euler {
         System.out.printf("Project Euler Problem 15: %s\n", euler15());
         System.out.printf("Project Euler Problem 16: %s\n", euler16());
         System.out.printf("Project Euler Problem 17: %s\n", euler17());
+        System.out.printf("Project Euler Problem 18: %s\n", euler18());
 
         long endTime = System.nanoTime();
         double stime = (endTime - startTime) / 1000000000.0;
@@ -341,6 +343,39 @@ public class Euler {
             total += writtenCharCount(i);
         }
         return total;
+    }
+
+    public static int euler18() {
+        try {
+            // Parsing the data
+            List<String> lines = Files.readAllLines(Paths.get("./euler18.txt"));
+            String[][] stringsArr = new String[15][];
+            for (int i=0; i<lines.size(); i++) {
+                String[] split = lines.get(i).split("\\s+");
+                stringsArr[i] = split;
+            }
+            Integer[][] data = new Integer[15][];
+            for (int i=0; i<stringsArr.length; i++) {
+                data[i] = new Integer[stringsArr[i].length];
+                for (int x=0; x<stringsArr[i].length; x++) {
+                    data[i][x] = Integer.valueOf(stringsArr[i][x]);
+                }
+            }
+            // Calculating the method
+            for (int x=data.length-2; x>=0; x--) {
+                for (int i=0; i<data[x].length; i++) {
+                    if (data[x+1][i] > data[x+1][i+1]) {
+                        data[x][i] += data[x+1][i];
+                    } else {
+                        data[x][i] += data[x+1][i+1];
+                    }
+                }
+            }
+            return data[0][0];
+        } catch (IOException e) {
+            System.out.println("Euler 18 file read failed");
+            return -1;
+        }
     }
 
 }
