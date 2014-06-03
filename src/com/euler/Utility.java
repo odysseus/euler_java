@@ -51,18 +51,6 @@ public class Utility {
         }
     }
 
-    public static int factors(long n) {
-        int count = 2;
-        long root = (long) sqrt(n);
-        for (int i = 2; i <= root; i++) {
-            if (n % i == 0)
-                count += 2;
-            if (Math.pow(i, 2) == n)
-                count--;
-        }
-        return count;
-    }
-
     public static int factors_count(long n) {
         PrimeGen primes = new PrimeGen();
         int count = 1;
@@ -120,7 +108,7 @@ public class Utility {
                 s = Integer.toString(i);
             }
         }
-        if (i / 1 > 0) {
+        if (i > 0) {
             total += ones[s.charAt(0) - '0'];
         }
         return total;
